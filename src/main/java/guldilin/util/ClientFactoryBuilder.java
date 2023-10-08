@@ -24,8 +24,4 @@ public class ClientFactoryBuilder {
         client = ClientBuilder.newBuilder().trustStore(keystore).build();
         return client;
     }
-
-    public static String getStorageServiceUrl() {
-        return System.getProperty("STORAGE_SERVICE_URL");
-    }
 }

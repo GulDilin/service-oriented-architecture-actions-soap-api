@@ -5,6 +5,7 @@ import guldilin.exceptions.EntryNotFound;
 import guldilin.exceptions.ErrorMessage;
 import guldilin.exceptions.StorageServiceRequestException;
 import guldilin.util.ClientFactoryBuilder;
+import guldilin.util.ServiceDiscoveryClientFactory;
 import lombok.SneakyThrows;
 
 import javax.ws.rs.client.Client;
@@ -17,7 +18,7 @@ public class CoordinatesRepoServiceImpl implements CoordinatesRepoService {
 
     public CoordinatesRepoServiceImpl() {
         this.client = ClientFactoryBuilder.getClient();
-        this.storageServiceUrl = ClientFactoryBuilder.getStorageServiceUrl();
+        this.storageServiceUrl = ServiceDiscoveryClientFactory.getStorageApiUrl();
     }
 
     @SneakyThrows

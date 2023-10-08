@@ -7,10 +7,16 @@ import guldilin.reposervice.CoordinatesRepoService;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
 
-@WebService(endpointInterface = "guldilin.service.CalculationService")
-public class CalculationServiceImpl implements CalculationService {
+@WebService(
+        serviceName = "CalculationService",
+        targetNamespace = "http://localhost:8080/CalculationService"
+)
+@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+public class CalculationServiceImpl {
     @Inject
     private CoordinatesRepoService coordinatesRepoService;
 
@@ -18,7 +24,9 @@ public class CalculationServiceImpl implements CalculationService {
     private CityRepoService cityRepoService;
 
     @WebMethod
-    public LengthDTO calculateDistanceBetweenCities(Long id1, Long id2) {
+    public LengthDTO calculateDistanceBetweenCities(
+            @WebParam(name = "id1") Long id1,
+            @WebParam(name = "id2") Long id2) {
 //        long lid1, lid2;
 //        try {
 //            lid1 = Long.parseLong(id1);
